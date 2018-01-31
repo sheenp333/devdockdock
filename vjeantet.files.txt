@@ -1,0 +1,13 @@
+content/HugoStructure/extramenu.md:1
+content/credits.md:1
+content/_index.md:3
+content/showcase.md:1
+content/Admin/installation.md:4
+content/Admin/shortcodes/revealjs.md:1
+content/Admin/create-page/page-images.md:6
+content/Section2/Sub1.md:1
+layouts/partials/menu-footer.html:3 - local menu footer future of my project
+themes/docdock/static/theme-original/style.css:1
+themes/docdock/static/scss/original/main.scss:1
+themes/docdock/theme.toml:4 - theme information point back to original? pull request
+themes/docdock/README.md:4 - github readme - probably shouldn't change yet

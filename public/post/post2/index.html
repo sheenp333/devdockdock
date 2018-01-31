@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Docdock</title>
+    
+      <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="generator" content="Hugo 0.30.2" />
+
+<title>Preconditions, Project Lombok, JSR 303 and JSR 308 :: Docdock</title>
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link href="/css/nucleus.css" rel="stylesheet">
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/hybrid.css" rel="stylesheet">
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<link href="/css/auto-complete.css" rel="stylesheet">
+<link href="/theme-original/style.css" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-2.x.min.js"></script>
+<style type="text/css">
+  :root #header + #content > #left > #rlblock_left {
+    display:none !important;
+  }
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79101-13', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+  </head>
+  <body data-url="/post/post2/">
+    
+      <div id="headermain"></div>
+<nav id="sidebar" class="showVisitedLinks">
+
+
+
+<div class="highlightable">
+  <div id="header-wrapper">
+    <div id="header">
+      
+	
+  
+    <p>DevDocDock Documentation</p>
+
+  
+
+    </div>
+        <div class="searchbox">
+		    <label for="search-by"><i class="fa fa-search"></i></label>
+		    <input data-search-input id="search-by" type="text" placeholder="Search...">
+		    <span data-search-clear=""><i class="fa fa-close"></i></span>
+		</div>
+		<script type="text/javascript" src="/js/lunr.min.js"></script>
+		<script type="text/javascript" src="/js/auto-complete.js"></script>
+		<script type="text/javascript">
+        
+            var baseurl = "\/";
+        
+		</script>
+		<script type="text/javascript" src="/js/search.js"></script>
+  </div>
+
+      <ul class="topics">
+            <li data-nav-id="/" class="dd-item">
+            <a href="/"><i class="fa fa-fw fa-home"></i></a>
+            </li>
+    <li data-nav-id="/admin/" class="dd-item alwaysopen">
+      <a href="/admin/">
+        <span>Admin</span>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/admin/installation/" class="dd-item">
+        <a href="/admin/installation/">
+          <span>Installation</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/configuration/" class="dd-item">
+        <a href="/admin/configuration/">
+          <span>Configuration</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+    <li data-nav-id="/admin/create-page/" class="dd-item">
+      <a href="/admin/create-page/">
+        <span><i class='fa fa-edit'></i> Create Page</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/admin/create-page/homepage/" class="dd-item">
+        <a href="/admin/create-page/homepage/">
+          <span>Home page</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/create-page/page-images/" class="dd-item">
+        <a href="/admin/create-page/page-images/">
+          <span>About images</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/create-page/page-slide/" class="dd-item">
+        <a href="/admin/create-page/page-slide/">
+          <span>Present a Slide</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/admin/shortcodes/" class="dd-item">
+      <a href="/admin/shortcodes/">
+        <span>Shortcodes</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/admin/shortcodes/alert/" class="dd-item">
+        <a href="/admin/shortcodes/alert/">
+          <span>alert</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/attachments/" class="dd-item">
+        <a href="/admin/shortcodes/attachments/">
+          <span>attachments</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/button/" class="dd-item">
+        <a href="/admin/shortcodes/button/">
+          <span>button</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+    <li data-nav-id="/admin/shortcodes/children/" class="dd-item">
+      <a href="/admin/shortcodes/children/">
+        <span>children</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+    <li data-nav-id="/admin/shortcodes/children/children-1/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-1/">
+        <span>page 1</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+    <li data-nav-id="/admin/shortcodes/children/children-1/children-1-1/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-1/children-1-1/">
+        <span>page 1-1</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+    <li data-nav-id="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/">
+        <span>page 1-1-1</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+    <li data-nav-id="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/">
+        <span>page 1-1-1-1</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+    <li data-nav-id="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-1/children-1-1/children-1-1-1/children-1-1-1-1/children-1-1-1-1-1/">
+        <span>page 1-1-1-1-1</span><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/admin/shortcodes/children/children-2/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-2/">
+        <span>page 2</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/admin/shortcodes/children/children-2/test3/" class="dd-item">
+        <a href="/admin/shortcodes/children/children-2/test3/">
+          <span>page test 3</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/admin/shortcodes/children/children-3/" class="dd-item">
+      <a href="/admin/shortcodes/children/children-3/">
+        <span>page 3</span><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/children/test/" class="dd-item">
+        <a href="/admin/shortcodes/children/test/">
+          <span>page test</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+      <li data-nav-id="/admin/shortcodes/excerpt/" class="dd-item">
+        <a href="/admin/shortcodes/excerpt/">
+          <span>excerpt</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/excerpt-include/" class="dd-item">
+        <a href="/admin/shortcodes/excerpt-include/">
+          <span>excerpt-include</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/expand/" class="dd-item">
+        <a href="/admin/shortcodes/expand/">
+          <span>expand</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/icon/" class="dd-item">
+        <a href="/admin/shortcodes/icon/">
+          <span>icon</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/mermaid/" class="dd-item">
+        <a href="/admin/shortcodes/mermaid/">
+          <span>mermaid</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/notice/" class="dd-item">
+        <a href="/admin/shortcodes/notice/">
+          <span>notice</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/panel/" class="dd-item">
+        <a href="/admin/shortcodes/panel/">
+          <span>panel</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/admin/shortcodes/revealjs/" class="dd-item">
+        <a href="/admin/shortcodes/revealjs/">
+          <span>revealjs</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/admin/search/" class="dd-item">
+      <a href="/admin/search/">
+        <span>About the Search Engine</span><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/hugostructure/" class="dd-item">
+      <a href="/hugostructure/">
+        <span>Hugo Structure</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/hugostructure/logo/" class="dd-item">
+        <a href="/hugostructure/logo/">
+          <span>Logo placeholder</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/hugostructure/extramenu/" class="dd-item">
+        <a href="/hugostructure/extramenu/">
+          <span>Extra menu entries</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+    <li data-nav-id="/hugostructure/customize-style/" class="dd-item">
+      <a href="/hugostructure/customize-style/">
+        <span>Customize website look and feel</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/hugostructure/customize-style/disable/" class="dd-item">
+        <a href="/hugostructure/customize-style/disable/">
+          <span>Disable features</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/hugostructure/customize-style/themestyle/" class="dd-item">
+        <a href="/hugostructure/customize-style/themestyle/">
+          <span>Theme styles</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/hugostructure/customize-style/theme-variants/" class="dd-item">
+        <a href="/hugostructure/customize-style/theme-variants/">
+          <span>Theme variants</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/section2/" class="dd-item">
+      <a href="/section2/">
+        <span>Section2</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/section2/sub1/" class="dd-item">
+        <a href="/section2/sub1/">
+          <span>SubEntry1</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/section2/sub2/" class="dd-item">
+        <a href="/section2/sub2/">
+          <span>SubEntry2</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+    <li data-nav-id="/section2/subfolder1/" class="dd-item">
+      <a href="/section2/subfolder1/">
+        <span>SubFolder1</span><i class="fa fa-angle-right fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/section2/subfolder1/test/" class="dd-item">
+        <a href="/section2/subfolder1/test/">
+          <span>page test</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li data-nav-id="/post/" class="dd-item parent">
+      <a href="/post/">
+        <span>Posts</span>
+            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
+      </a>
+        <ul>
+      <li data-nav-id="/post/post2/" class="dd-item active">
+        <a href="/post/post2/">
+          <span>Preconditions, Project Lombok, JSR 303 and JSR 308</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+      <li data-nav-id="/post/method-validation-with-jsr303-and-aspectj/" class="dd-item">
+        <a href="/post/method-validation-with-jsr303-and-aspectj/">
+          <span>Method validation with JSR303 and AspectJ</span><i class="fa fa-circle-thin read-icon"></i>
+        </a>
+    </li>
+        </ul>
+    </li>
+
+
+
+        <section id="shortcuts">
+                <li class="" role=""><h3>More</h3><a href="https://github.com/sheenp333/hugo-theme-docdock" target="_blank" rel="noopener"><i class='fa fa-github'></i> Github repo</a></li>
+                <li class="" role=""><a href="/showcase" target="_blank" rel="noopener"><i class='fa fa-camera'></i> Showcases</a></li>
+                <li class="" role=""><a href="https://gohugo.io/" target="_blank" rel="noopener"><i class='fa fa-bookmark'></i> Hugo Documentation</a></li>
+                <li class="" role=""><a href="/credits" target="_blank" rel="noopener"><i class='fa fa-bullhorn'></i> Credits</a></li>
+        </section>
+            <a id="clear-history" class="" href="#" data-clear-history-toggle=""><i class="fa  fa-history"></i> Clear History</a>
+
+    <hr />
+    <li></li>
+    
+    </ul>
+
+ <section id="footer"><center>
+
+<a class="github-button" href="https://github.com/vjeantet/hugo-theme-docdock/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download vjeantet/hugo-theme-docdock on GitHub">Download</a>
+
+
+<a class="github-button" href="https://github.com/vjeantet/hugo-theme-docdock" data-icon="octicon-star" data-show-count="false" aria-label="Star vjeantet/hugo-theme-docdock on GitHub">Star</a>
+
+
+<a class="github-button" href="https://github.com/vjeantet/hugo-theme-docdock/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork vjeantet/hugo-theme-docdock on GitHub">Fork</a>
+
+</center>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+    </section>
+  </div>
+</nav>
+
+
+
+<section id="body">
+<div id="overlay"></div>
+<div class="padding highlightable">
+
+  <div id="top-bar">
+    
+      
+      
+      
+    <div id="top-github-link">
+      <a class="github-link" href="https://github.com/sheenp333/hugo-theme-docdock/edit/master/exampleSite/content/post/post2.adoc" target="blank">
+        <i class="fa fa-code-fork"></i>
+        Edit page
+      </a>
+    </div><div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+        <span id="sidebar-toggle-span">
+          <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+            <i class="fa fa-bars"></i>
+          </a>
+        </span>
+        <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+        <span class="links">
+        
+
+
+
+
+
+
+
+ <a href='/'>DocDock Theme for Hugo</a> > <a href='/post/'>Posts</a> > Preconditions, Project Lombok, JSR 303 and JSR 308
+
+ 
+
+ 
+
+   
+        </span>
+    </div>
+    
+    
+    <div class="progress">
+        <div class="wrapper">
+    
+        </div>
+    </div>
+    
+
+  </div>
+
+
+  <div id="tags">
+    
+      <a class="label label-default" href="/tags/aop">AOP</a>
+    
+      <a class="label label-default" href="/tags/domain-driven-design">Domain-driven Design</a>
+    
+      <a class="label label-default" href="/tags/interesting">Interesting</a>
+    
+      <a class="label label-default" href="/tags/junit">JUnit</a>
+    
+      <a class="label label-default" href="/tags/modernization">Modernization</a>
+    
+  </div>
+
+<div id="body-inner">
+  
+    <h1>Preconditions, Project Lombok, JSR 303 and JSR 308</h1>
+  
+
+
+
+    
+    
+    
+    <div class="imageblock">
+<div class="content">
+<img src="/docdock/media/diag-8c0a323a9267ab90f03e57136f1e2b89.png" alt="diag 8c0a323a9267ab90f03e57136f1e2b89" width="298" height="214">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/docdock/media/diag-6634a60eba787f2c6f5ca38a56944b14.png" alt="diag 6634a60eba787f2c6f5ca38a56944b14" width="550" height="280">
+</div>
+</div>
+<div class="paragraph">
+<p>A good method implementation validates all of its preconditions before it continues. Luckily there are different frameworks such as Project Lombok, JSR 303 Bean Validation API and JSR 308 Java Type Annotations available for this job.  All of them are based on Java Annotations at method arguments, but they differ in runtime and compile time behavior. Here are some examples.</p>
+</div>
+<div class="sect1">
+<h2 id="_project_lombok">Project Lombok</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Project Lombok adds language features for boilerplate free code to the Java ecosystem. It is based on the Java Annotation Processor facility of the Java compiler. One of the features is null check of method preconditions. This is basically done by annotating the method arguments with @lombok.NonNull as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import lombok.NonNull;
+import org.junit.Test;
+
+public class LombokNativeTest {
+
+    public class LombokNative {
+
+        private final String value;
+
+        public LombokNative(@NonNull String value) {
+            this.value = value;
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testCreate() {
+        new LombokNative(null);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lombok adds the null check boilerplate code at compile time. At runtime, a NullPointer Exception is thrown, as seen in the example above.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_lombok_and_jsr_303">Project Lombok and JSR 303</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are other options to mark a method argument as not null-able. One of them is JSR 303 or the Java Validation API. Let us see what happens if we use it with Lombok:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import org.junit.Test;
+
+import javax.validation.constraints.NotNull;
+
+public class Lombok303Test {
+
+    public class Lombok303 {
+
+        private final String value;
+
+        public Lombok303(@NotNull String value) {
+            this.value = value;
+        }
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testCreate() {
+        new Lombok303(null);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Well, this test fails, no exception is thrown. This is due to the fact that Lombok parses "NonNull" annotations in a case insensitive manner. JSR 303 uses "NotNull", so Lombok ignores this annotation completely. To make it runnable, we have to run the JSR 303 Validator by hand. This can easily be done using <a href="/post/method-validation-with-jsr303-and-aspectj/">Method validation with JSR303 and AspectJ</a>.</p>
+</div>
+<div class="paragraph">
+<p>We can argue that JSR 303 is far more powerful than Lombok for validation. The Java Validator API even offers a method level validation, which can be greatly used with AOP to do all kind of validations. If you are using the Spring framework, you can also use the @Validated annotation for managed objects, which basically invokes the JSR 303 Validator in the background.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jsr_308_to_the_rescue">JSR 308 to the rescue?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>JSR 308 or Java Type Annotations were added with Java 8. It is basically an extension of the Java type system, and allows annotations almost everywhere in the code. And of course it comes with some @NonNull annotations. Here is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">import org.junit.Test;
+
+import javax.annotation.Nonnull;
+
+public class JSR308Test {
+
+    public class JSR308 {
+
+        private final String value;
+
+        public JSR308(@Nonnull String value) {
+            this.value = value;
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInit() {
+        new JSR308(null);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We get what we expected, an IllegalArgumentException.class. We get the same with Project Lombok. Where is the difference?</p>
+</div>
+<div class="paragraph">
+<p>Well, as mentioned above, JSR 303 is an extension of the type system. So wouldn&#8217;t it be nice if the type system could help us to detect potential precondition violation at compile time? This is the case in the example above, this shouldn&#8217;t even compile, as it clearly violates the contract. And here comes the true power of JSR 308 to play. By enabling a special compiler, we can transform the runtime exception into a compile time error. We just have to add the compiler to the pom.xml as seen here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
+    &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.3&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;source&gt;1.8&lt;/source&gt;
+        &lt;target&gt;1.8&lt;/target&gt;
+        &lt;fork&gt;true&lt;/fork&gt;
+        &lt;annotationProcessors&gt;
+            &lt;annotationProcessor&gt;
+                org.checkerframework.checker.nullness.NullnessChecker
+            &lt;/annotationProcessor&gt;
+        &lt;/annotationProcessors&gt;
+    &lt;/configuration&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.checkerframework&lt;/groupId&gt;
+            &lt;artifactId&gt;compiler&lt;/artifactId&gt;
+            &lt;version&gt;2.1.6&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and we get a compile time error if we try to compile the example above:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Error:(35, 20) java: [argument.type.incompatible] incompatible types in argument.
+  found   : null
+  required: @Initialized @NonNull String</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a number of options for compile time and runtime checking available. When it comes to method level precondition checking, JSR 303 with AOP is the most flexible and powerful option, but it offers only runtime type checking. JSR 308 brings back compile time checking by using a special compiler. Personally I think that we need both of them. Compile time  checking can save a lot of time, but there are a lot of conditions that can only be detected at runtime, and here we can use JSR 303 with AOP do to method level validation on managed and un-managed instances. But every framework or language feature doesn&#8217;t remove the need to write complete and useful unit tests.</p>
+</div>
+</div>
+</div>
+
+
+    
+    
+          <footer class=" footline" >
+	
+</footer>
+  </div>
+</div>
+
+<div id="navigation">
+<a class="nav nav-prev" href="/post/" title="Posts"> <i class="fa fa-chevron-left"></i></a>
+    <a class="nav nav-next" href="/post/method-validation-with-jsr303-and-aspectj/" title="Method validation with JSR303 and AspectJ" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a></div>
+
+</section>
+<div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+  <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+</div>    
+
+<script src="/js/clipboard.min.js"></script>
+<script src="/js/featherlight.min.js"></script>
+<script src="/js/html5shiv-printshiv.min.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="/js/modernizr.custom.71422.js"></script>
+<script src="/js/docdock.js"></script>
+<script src="/theme-original/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>
